@@ -20,12 +20,27 @@ models_dir = Path('src/models')
 if not models_dir.exists():
     st.error(f"Models directory not found at {models_dir.resolve()}. Please ensure the path is correct.")
     st.stop()
+<<<<<<< HEAD
 
     # Check if the models directory exists
 if not models_dir.exists():
     st.error(f"Models directory not found at {models_dir.resolve()}. Please ensure the path is correct.")
     st.stop()
 
+=======
+    
+    
+# Load available sources
+try:
+    sources = [file.stem.split('_')[0] for file in models_dir.glob('*_model.joblib')]
+    if not sources:
+        st.error("No models found in the models directory. Please add model files with the naming convention '<source>_model.joblib'.")
+        st.stop()
+except Exception as e:
+    st.error(f"Error loading models: {e}")
+    st.stop()
+    
+>>>>>>> aeb5c359170c943cb8853eb5f455d44f910cf684
 # User input
 selected_source = st.selectbox("Select a source:", sources)
 user_text = st.text_area("Enter your text here:")
@@ -94,4 +109,16 @@ else:
         else:
             st.dataframe(samples[['Source', 'Sentiment', 'Text']].sample(min(5, len(samples))))
     except Exception as e:
+<<<<<<< HEAD
         st.error(f"Error loading sample data: {e}")
+=======
+        st.error(f"Error loading sample data: {e}")
+
+
+
+
+
+
+    
+
+>>>>>>> aeb5c359170c943cb8853eb5f455d44f910cf684
